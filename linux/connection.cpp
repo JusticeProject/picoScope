@@ -95,7 +95,7 @@ bool Connection::recv(const std::string& expected)
     uint8_t read_buf[256];
     memset(&read_buf, '\0', sizeof(read_buf));
     
-    const int MAX_TRIES = 5;
+    const int MAX_TRIES = 10;
     int tries = 0;
     int num_bytes = 0;
     for (; tries < MAX_TRIES; tries++)
@@ -106,7 +106,7 @@ bool Connection::recv(const std::string& expected)
             break;
         }
         //printf("waiting to read more of block, num_bytes = %i\n", num_bytes);
-        waitMilliSec(1);
+        waitMilliSec(tries ? tries : 1);
     }
     
     if (num_bytes < expected.size())
@@ -200,7 +200,7 @@ bool Connection::recvBlock(std::vector<uint8_t>& data)
     uint8_t read_buf[BLOCK_SIZE];
     memset(read_buf, 0, sizeof(read_buf));
 
-    const int MAX_TRIES = 5;
+    const int MAX_TRIES = 10;
     int tries = 0;
     int num_bytes = 0;
     for (; tries < MAX_TRIES; tries++)
@@ -211,7 +211,7 @@ bool Connection::recvBlock(std::vector<uint8_t>& data)
             break;
         }
         //printf("waiting to read more of block, num_bytes = %i\n", num_bytes);
-        waitMilliSec(1);
+        waitMilliSec(tries ? tries : 1);
     }
     
     //printf("read %u bytes of block\n", num_bytes);

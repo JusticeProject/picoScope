@@ -134,6 +134,8 @@ void core1_entry()
 int main()
 {
     stdio_init_all();
+    // the SDK will translate LF to CRLF be default, so turn that off because we are sending binary data and not ascii text
+    stdio_set_translate_crlf(&stdio_usb, false);
     adc_init();
     if (cyw43_arch_init())
     {

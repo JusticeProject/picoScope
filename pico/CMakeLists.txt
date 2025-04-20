@@ -19,6 +19,7 @@ include(pico_sdk_import.cmake)
 project(picoScope C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 pico_sdk_init()
 
 add_executable(picoScope
@@ -28,6 +29,12 @@ add_executable(picoScope
 # enable usb output, disable uart output
 pico_enable_stdio_usb(picoScope 1)
 pico_enable_stdio_uart(picoScope 0)
+
+# disable the conversion of CR -> CRLF
+#target_compile_definitions(picoScope
+#    PUBLIC
+#        PICO_STDIO_ENABLE_CRLF_SUPPORT=0
+#)
 
 # create map/bin/hex/uf2 file etc.
 pico_add_extra_outputs(picoScope)
