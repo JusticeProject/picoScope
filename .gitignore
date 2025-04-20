@@ -1,0 +1,4 @@
+build
+.vscode
+linux/data*.txt
+linux/picoComm
