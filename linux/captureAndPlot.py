@@ -3,6 +3,9 @@
 # sudo usermod -a -G dialout <username>
 # need to reboot afterwards
 
+# may need to install PyQt to use matplotlib
+# pip install PyQt6   (or later version if available)
+
 import serial
 import time
 import sys
