@@ -1,4 +1,4 @@
-build
-.vscode
+pico/build
+pico/.vscode
 linux/data*.txt
 linux/picoComm
